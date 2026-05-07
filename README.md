@@ -1,83 +1,117 @@
-**y2mp3-Music-Download**
+# 🎵 y2mp3-Music-Download
+
 A smart YouTube to MP3 downloader with a graphical user interface (GUI) built in Python.
 
-Unlike standard downloaders, this tool uses a local AI (Llama 3.1 via Ollama) to automatically clean up messy YouTube titles (removing clutter like [Official MV], (Lyrics)) and formats them perfectly into Song Name - Artist Name. It also automatically applies ID3 metadata tags (Title, Artist, Album) to the downloaded MP3 files.
+Unlike standard downloaders, this tool uses a local AI (Llama 3.1 via Ollama) to automatically clean up messy YouTube titles (removing clutter like [Official MV], (Lyrics)) and formats them perfectly with proper metadata tagging.
 
-**Features**
-GUI Interface: Easy-to-use interface built with tkinter.
+---
 
-Playlist Support: Download single videos or entire YouTube playlists.
+## ✨ Features
 
-AI-Powered Renaming: Uses a local Llama 3.1 model to analyze YouTube titles and correctly extract the track and artist names.
+- **GUI Interface**: Easy-to-use interface built with tkinter
+- **Playlist Support**: Download single videos or entire YouTube playlists
+- **AI-Powered Renaming**: Uses a local Llama 3.1 model to analyze YouTube titles and correctly extract track and artist names
+- **Smart Fallbacks**: If a title lacks an artist, the tool automatically fetches the YouTube channel name and assigns it as the artist
+- **Auto ID3 Tagging**: Automatically embeds cleaned Title, Artist, and Album metadata into MP3 files
+- **Live Track Detection**: Automatically detects live performances and appends [Live] to the track name
+- **Interactive vs. Auto Mode**: Choose to manually verify names or let it run unattended
+- **Thai Indie Band Rules**: Hardcoded parsing rules to prevent AI hallucination for specific band names
 
-Smart Fallbacks: If a title lacks an artist, the tool automatically fetches the YouTube Channel name and assigns it as the artist.
+---
 
-Auto ID3 Tagging: Automatically embeds the cleaned Title, Artist, and Album (taken from the Playlist name) directly into the MP3's metadata.
+## 📁 File Overview
 
-Live Track Detection: Automatically detects live performances and appends [Live] to the track name.
+| File | Purpose |
+|------|---------|
+| `music_downloaderV2.py` | **Recommended** - All-in-one main application with downloading, AI renaming, and ID3 tagging |
+| `music_downloader.py` | Legacy/basic version of the downloader |
+| `metadata.py` | Standalone utility to fix ID3 tags for existing MP3 files |
 
-Interactive vs. Auto Mode: Choose to manually verify and edit the AI's suggested name via a popup dialog, or let it run completely unattended.
+---
 
-Thai Indie Band Rules: Contains hardcoded parsing rules to prevent AI hallucination for specific tricky band names (e.g., Three Man Down, Only Monday, มนัสวีร์, TaitosmitH).
+## 📋 Prerequisites
 
-**File Overview**
-music_downloaderV2.py: The recommended, all-in-one main application. Handles downloading, AI renaming, and applies ID3 metadata immediately after the download finishes.
+Before running the application, ensure you have the following installed:
 
-music_downloader.py: The legacy/basic version of the downloader.
+### Required
+- **Python 3.x**
+- **FFmpeg** (Required by yt-dlp to extract audio)
+  - Ubuntu/Debian: `sudo apt install ffmpeg`
+  - Windows: `winget install ffmpeg` or download from [ffmpeg.org](https://ffmpeg.org)
 
-metadata.py: A standalone utility tool. Scans a selected folder for MP3 files named as Song - Artist.mp3 and fixes their ID3 tags retroactively.
+### For AI Renaming Feature
+- **Ollama & Llama 3.1**
+  - Download from [ollama.com](https://ollama.com)
+  - Pull the model: `ollama run llama3.1`
+  - Ensure Ollama runs in the background before starting the app
 
-**Prerequisites**
-Before running the application, ensure you have the following installed on your system:
+---
 
-Python 3.x
+## 🔧 Installation
 
-FFmpeg (Required by yt-dlp to extract audio)
-
-Ubuntu/Debian: sudo apt install ffmpeg
-
-Windows: Download via winget install ffmpeg or from the official site.
-
-Ollama & Llama 3.1 (For the AI renaming feature)
-
-Download Ollama from ollama.com
-
-Pull the model: ollama run llama3.1 (Ensure Ollama is running in the background before starting the app).
-
-**Installation**
-Clone the repository:
-
-Bash
+1. **Clone the repository**:
+```bash
 git clone https://github.com/Oscars03/y2mp3-Music-Download.git
 cd y2mp3-Music-Download
-Install the required Python libraries:
+```
 
-Bash
+2. **Install required Python libraries**:
+```bash
 pip install yt-dlp requests
-Install mutagen (for ID3 tag editing):
+```
 
-Linux/Ubuntu users (Recommended to avoid environment conflicts):
+3. **Install mutagen** (for ID3 tag editing):
 
-Bash
-sudo apt install python3-mutagen
-Windows/Mac users:
+   **Linux/Ubuntu** (Recommended):
+   ```bash
+   sudo apt install python3-mutagen
+   ```
 
-Bash
-pip install mutagen
-💻 Usage
-Run the V2 downloader:
+   **Windows/Mac**:
+   ```bash
+   pip install mutagen
+   ```
 
-Bash
+---
+
+## 💻 Usage
+
+1. **Run the application**:
+```bash
 python3 music_downloaderV2.py
-Paste a YouTube Video URL or Playlist URL.
+```
 
-(Optional) Set the number of songs to download. Leave it blank to download the entire playlist.
+2. **Paste a YouTube URL** (video or playlist link)
 
-Check/Uncheck the "Popup Confirm" box depending on whether you want to approve names manually.
+3. **(Optional)** Set the number of songs to download (leave blank for entire playlist)
 
-Click Start. The files will be downloaded to your system's default Music folder.
+4. **Check/Uncheck "Popup Confirm"** to approve names manually or run automatically
 
-⚠️ Notes
-The Llama 3.1 model must be running locally on port 11434 (Ollama's default).
+5. **Click Start** - Files download to your system's default Music folder
 
-If yt-dlp encounters an error fetching info, ensure your yt-dlp package is up to date (pip install --upgrade yt-dlp). Private or deleted videos in playlists will be safely skipped.
+---
+
+## ⚠️ Important Notes
+
+- The Llama 3.1 model must run locally on port `11434` (Ollama's default)
+- Keep yt-dlp updated: `pip install --upgrade yt-dlp`
+- Private or deleted videos in playlists are safely skipped
+- Respect copyright laws and YouTube's terms of service when downloading
+
+---
+
+## 📝 License
+
+Add your license information here.
+
+## 👤 Author
+
+**Oscars03**
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork this repository and submit pull requests.
+
+---
+
+**Last Updated**: 2026-05-07
