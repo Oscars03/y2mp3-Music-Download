@@ -100,17 +100,9 @@ python3 music_downloaderV2.py
 
 ---
 
-## 📝 License
-
-Add your license information here.
-
 ## 👤 Author
 
 **Oscars03**
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to fork this repository and submit pull requests.
 
 ---
 
