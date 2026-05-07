@@ -4,6 +4,24 @@ A smart YouTube to MP3 downloader with a graphical user interface (GUI) built in
 
 Unlike standard downloaders, this tool uses a local AI (Llama 3.1 via Ollama) to automatically clean up messy YouTube titles (removing clutter like [Official MV], (Lyrics)) and formats them perfectly with proper metadata tagging.
 
+## 🚧 Limitations & Restrictions (What it Can and Can't Do)
+
+To set the right expectations, here is a clear breakdown of the tool's capabilities and current boundaries:
+
+### ✅ What it CAN do:
+* **Download Public & Unlisted Content:** Works seamlessly with standard YouTube videos and public/unlisted playlists.
+* **Clean & Format Titles:** Automatically removes YouTube-specific clutter (e.g., `[Official MV]`, `(Lyrics)`, `4K`) and enforces a strict `Song - Artist` naming convention.
+* **Smart Fallback:** If an artist's name is entirely missing from the video title, the tool intelligently extracts the YouTube Channel name and formats it as the artist.
+* **Tag Files:** Embeds standard ID3 metadata (Title, Artist, Album) and the YouTube thumbnail as the cover art directly into the MP3 file.
+* **Apply Hardcoded Rules:** Contains specific bypass rules to correctly identify tricky Thai indie bands (e.g., *Three Man Down*, *Only Monday*, *มนัสวีร์*, *LHAM SOMPHOL*).
+
+### ❌ What it CANNOT do:
+* **Bypass DRM or Other Platforms:** This tool is strictly a YouTube downloader. It does NOT support downloading from Spotify, Apple Music, Joox, or any DRM-protected streaming services.
+* **Download Private/Members-Only Videos:** If a video requires a login, is set to Private, or is restricted to channel members, the tool cannot access it and will automatically skip it.
+* **Fetch Official Studio Album Art:** The tool embeds the *YouTube video thumbnail* as the album cover. It does not scrape official high-resolution album covers from external music databases.
+* **Run Instantly on Low-End Hardware:** Because the Llama 3.1 model runs *locally* on your machine via Ollama, the AI analysis speed depends entirely on your computer's CPU/GPU capabilities.
+* **Guarantee 100% AI Perfection:** While the prompt is heavily optimized, 8B parameter models can still occasionally hallucinate on highly abstract or poorly named videos. (It is highly recommended to leave the **"Popup Confirm"** feature enabled for manual verification).
+
 ---
 
 ## ✨ Features
